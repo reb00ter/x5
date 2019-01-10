@@ -121,10 +121,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "assets"),  # здесь статика для джанги
+    os.path.join(BASE_DIR, "static"),  # сюда генерит файлы сборка js
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+
+# Заменяем модель пользователя
+AUTH_USER_MODEL = 'core.User'
+
 
 try:
     from .local_settings import *

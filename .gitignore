@@ -1,0 +1,24 @@
+/venv/
+/static/
+/staticfiles/
+.DS_Store
+/js/node_modules/
+/js/npm-debug.log*
+/js/yarn-debug.log*
+/js/yarn-error.log*
+/js/test/unit/coverage/
+/js/test/e2e/reports/
+/js/selenium-debug.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.pyc
+
+# Dev
+db.sqlite3
+containers/local_settings.py

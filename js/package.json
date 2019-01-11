@@ -5,7 +5,7 @@
   "author": "Максим Барабанов <maxim.barabanov@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "node_modules/.bin/webpack --config build/webpack.dev.conf.js --watch",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -14,6 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "devextreme": "^18.2.4",
+    "devextreme-vue": "^18.2.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

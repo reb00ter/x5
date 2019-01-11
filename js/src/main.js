@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import 'devextreme/dist/css/dx.common.css'
+import 'devextreme/dist/css/dx.light.compact.css'
 
 Vue.config.productionTip = false
 

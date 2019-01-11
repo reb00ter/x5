@@ -22,3 +22,4 @@
 # Dev
 db.sqlite3
 containers/local_settings.py
+templates/index.html

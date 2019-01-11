@@ -166,5 +166,5 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = 'aa2Br6nXt8MPMyfvq5KO'
 
 try:
     from .local_settings import *
-except FileNotFoundError:
+except ModuleNotFoundError:
     pass

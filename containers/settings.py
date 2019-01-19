@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
     # Project apps
     'core.apps.CoreConfig',
+    'geo.apps.GeoConfig',
+    'boxes.apps.BoxesConfig',
 ]
 
 MIDDLEWARE = [

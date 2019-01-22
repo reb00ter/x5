@@ -14,11 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.views.generic import TemplateView
+from django.urls import path, include, reverse_lazy
+from django.views.generic import TemplateView, RedirectView
+from boxes import views as boxes
+from core import views as core
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', core.UserViewSet)
+router.register(r'containers/types', boxes.ContainerTypeViewSet)
+router.register(r'containers/free', boxes.FreeContainerViewSet)
+router.register(r'containers/needed', boxes.NeededContainerViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('api/', include(router.urls)),
+    path('accounts/profile/', RedirectView.as_view(url=reverse_lazy('index')), name='profile'),
     path('', TemplateView.as_view(template_name="index.html"), name='index')
 ]

@@ -2,5 +2,5 @@ from django.contrib import admin
 from .models import Region, City
 
 # Register your models here.
-admin.register(Region)
-admin.register(City)
+admin.site.register(Region)
+admin.site.register(City)

@@ -1,16 +1,22 @@
 
 from rest_framework import serializers
 
-from boxes.models import FreeContainer, NeededContainer
+from boxes.models import FreeContainer, NeededContainer, ContainerType
 
 
-class FreeContainerSerializer(serializers.HyperlinkedModelSerializer):
+class FreeContainerSerializer(serializers.ModelSerializer):
     class Meta:
         model = FreeContainer
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('type', 'location', 'address', 'count', 'parts', 'date_from', 'date_till', 'contact')
 
 
-class NeededContainerSerializer(serializers.HyperlinkedModelSerializer):
+class NeededContainerSerializer(serializers.ModelSerializer):
     class Meta:
         model = NeededContainer
-        fields = ('url', 'name')
+        fields = ('type', 'location', 'address', 'count', 'date_from', 'date_till', 'contact')
+
+
+class ContainerTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContainerType
+        fields = ('id', 'title')

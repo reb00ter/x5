@@ -4,6 +4,7 @@ from django.shortcuts import render
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 
+from boxes.filters import ContainerFilter
 from boxes.models import NeededContainer, FreeContainer, ContainerType
 from boxes.serializers import NeededContainerSerializer, FreeContainerSerializer, ContainerTypeSerializer
 
@@ -20,6 +21,7 @@ class FreeContainerViewSet(viewsets.ModelViewSet):
     queryset = FreeContainer.objects.all()
     serializer_class = FreeContainerSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+    filterset_class = ContainerFilter
 
 
 class NeededContainerViewSet(viewsets.ModelViewSet):
@@ -29,3 +31,4 @@ class NeededContainerViewSet(viewsets.ModelViewSet):
     queryset = NeededContainer.objects.all()
     serializer_class = NeededContainerSerializer
     filter_backends = (filters.SearchFilter, DjangoFilterBackend)
+    filterset_class = ContainerFilter

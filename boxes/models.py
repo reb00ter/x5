@@ -21,7 +21,7 @@ class BaseContainer(models.Model):
     Базовый класс хранения информации о партии контейнеров
     """
     type = models.ForeignKey(ContainerType, models.CASCADE, verbose_name="тип")
-    location = models.ForeignKey(Station, models.CASCADE, verbose_name="располжене")
+    location = models.ForeignKey(Station, models.CASCADE, verbose_name="расположение")
     address = models.TextField(verbose_name="адрес", blank=True, null=True)
     count = models.PositiveIntegerField(verbose_name="количество")
     date_from = models.DateField(verbose_name="свободны с")

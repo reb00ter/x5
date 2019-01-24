@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Region
+from .serializers import RegionSerializer
 
-# Create your views here.
+
+class RegionsViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer

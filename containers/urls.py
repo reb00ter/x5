@@ -18,10 +18,12 @@ from django.urls import path, include, reverse_lazy
 from django.views.generic import TemplateView, RedirectView
 from boxes import views as boxes
 from core import views as core
+from geo import views as geo
 from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r'users', core.UserViewSet)
+router.register(r'locations', geo.RegionsViewSet)
 router.register(r'containers/types', boxes.ContainerTypeViewSet)
 router.register(r'containers/free', boxes.FreeContainerViewSet)
 router.register(r'containers/needed', boxes.NeededContainerViewSet)

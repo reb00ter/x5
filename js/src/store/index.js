@@ -17,12 +17,23 @@ export default new Vuex.Store({
   actions: {
     updateContainerTypes (context) {
       api.getContainerTypes().then(result => context.commit('setContainerTypes', result))
+    },
+    search (context, params) {
+      context.commit('setSearchParams', params)
+      if (context.state.mode === 'avail') {
+        api.getFreeContainers(params).then(result => context.commit('setSearchResults', result))
+      }
     }
   },
   mutations: {
     setContainerTypes (state, types) {
-      console.log('commit')
       state.types = types
+    },
+    setSearchParams (state, params) {
+      state.params = params
+    },
+    setSearchResults (state, results) {
+      state.results = results
     }
   }
 })

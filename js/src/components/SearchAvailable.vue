@@ -1,7 +1,7 @@
 <template>
   <div class="search_box">
     Поиск
-    <dx-select :data-source="types" valueExpr="id" displayExpr="title"/>
+    <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type" @change="updateType"/>
   </div>
 </template>
 
@@ -11,7 +11,8 @@ import dxSelect from 'devextreme-vue/select-box'
 export default {
   name: 'SearchAvailable',
   data () {
-    return {}
+    return {
+    }
   },
   components: {
     dxSelect
@@ -19,12 +20,25 @@ export default {
   computed: {
     types () {
       return this.$store.state.types
+    },
+    type: {
+      get () {
+        return this.$store.state.type
+      },
+      set (value) {
+        this.$store.dispatch('search', {type: value}).then(function () {
+          console.log('completed')
+        })
+        console.log(this.$store.state.params)
+      }
+    }
+  },
+  methods: {
+    updateType () {
     }
   },
   mounted () {
-    this.$store.dispatch('updateContainerTypes').then(function () {
-      console.log('types loaded')
-    })
+    this.$store.dispatch('updateContainerTypes').then(function () {})
   }
 }
 </script>

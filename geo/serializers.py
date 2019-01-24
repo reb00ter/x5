@@ -39,6 +39,12 @@ class CitySerializer(serializers.ModelSerializer):
         model = City
         fields = ('id', 'title', 'children')
 
+    def to_representation(self, instance):
+        data = super(CitySerializer, self).to_representation(instance)
+        data['opened'] = False
+        data['visible'] = False
+        return data
+
 
 class RegionSerializer(serializers.ModelSerializer):
     children = CitySerializer(many=True, read_only=True)
@@ -46,3 +52,9 @@ class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ('id', 'title', 'children')
+
+    def to_representation(self, instance):
+        data = super(RegionSerializer, self).to_representation(instance)
+        data['opened'] = False
+        data['visible'] = False
+        return data

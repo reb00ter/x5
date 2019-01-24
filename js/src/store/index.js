@@ -11,12 +11,14 @@ export default new Vuex.Store({
     mode: 'avail',
     params: {},
     results: [],
-    types: []
+    types: [],
+    locations: []
   },
   strict: debug,
   actions: {
-    updateContainerTypes (context) {
+    updateDictionaries (context) {
       api.getContainerTypes().then(result => context.commit('setContainerTypes', result))
+      api.getLocations().then(result => context.commit('setLocations', result))
     },
     search (context, params) {
       context.commit('setSearchParams', params)
@@ -28,6 +30,9 @@ export default new Vuex.Store({
   mutations: {
     setContainerTypes (state, types) {
       state.types = types
+    },
+    setLocations (state, locations) {
+      state.locations = locations
     },
     setSearchParams (state, params) {
       state.params = params

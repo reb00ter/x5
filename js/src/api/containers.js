@@ -14,6 +14,14 @@ export default {
       return {}
     }
   },
+  async getLocations () {
+    try {
+      let resp = await HTTP.get('locations/')
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
   async getContainerTypes () {
     try {
       let resp = await HTTP.get('containers/types/')

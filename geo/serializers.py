@@ -31,6 +31,11 @@ class StationSerializer(serializers.ModelSerializer):
         model = Station
         fields = ('id', 'title')
 
+    def to_representation(self, instance):
+        data = super(StationSerializer, self).to_representation(instance)
+        data['type'] = 'location'
+        return data
+
 
 class CitySerializer(serializers.ModelSerializer):
     children = StationSerializer(many=True, read_only=True)
@@ -43,6 +48,7 @@ class CitySerializer(serializers.ModelSerializer):
         data = super(CitySerializer, self).to_representation(instance)
         data['opened'] = False
         data['visible'] = False
+        data['type'] = 'location__city'
         return data
 
 
@@ -57,4 +63,5 @@ class RegionSerializer(serializers.ModelSerializer):
         data = super(RegionSerializer, self).to_representation(instance)
         data['opened'] = False
         data['visible'] = False
+        data['type'] = 'location__city__region'
         return data

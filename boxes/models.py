@@ -29,10 +29,11 @@ class BaseContainer(models.Model):
     contact = models.ForeignKey(settings.AUTH_USER_MODEL, models.SET_NULL, null=True)
 
     def __str__(self):
+        location = "{} {} {}".format(self.location.title, self.location.city.title, self.location.city.region.title)
         if self.address:
-            return "{} контейнеров с {} по адресу".format(self.count, self.date_from, self.address)
+            return "{} {} контейнеров с {} по адресу {}".format(location, self.count, self.date_from, self.address)
         else:
-            return "{} контейнеров с {}".format(self.count, self.date_from)
+            return "{} {} контейнеров с {}".format(location, self.count, self.date_from)
 
     class Meta:
         abstract = True

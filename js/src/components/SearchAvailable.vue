@@ -1,23 +1,60 @@
 <template>
   <div class="search_box">
-    Поиск
-    <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type" @change="updateType"/>
-    <tree-selector :options="locations"/>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-3 search_box__inner">
+          <div class="row">
+            <div class="search_box__item col-12">
+              <label>Расположение</label>
+              <tree-selector :options="locations" @change="updateLocations"/>
+            </div>
+            <div class="search_box__item col-12">
+              <label>Тип</label>
+              <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type"/>
+            </div>
+            <div class="search_box__item col-4">
+              <label>Количество</label>
+              <dx-num v-model="count" min="1"/>
+            </div>
+            <div class="search_box__item col-4">
+              <label>С</label>
+              <dx-date v-model="date_from"/>
+            </div>
+            <div class="search_box__item col-4">
+              <label>По</label>
+              <dx-date v-model="date_till" :min="param_date_from"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import dxSelect from 'devextreme-vue/select-box'
+import dxNum from 'devextreme-vue/number-box'
+import dxDate from 'devextreme-vue/date-box'
 import TreeSelector from './treeselector/treeselector.vue'
 
 export default {
   name: 'SearchAvailable',
   data () {
     return {
+      param_count: 1,
+      param_type: null,
+      param_date_from: null,
+      param_date_till: null,
+      param_location: [],
+      param_location__city: [],
+      param_location__city__region: [],
+      date_format: {year: 'full', month: '2-digit', day: '2-digit'}
     }
   },
   components: {
     dxSelect,
+    dxNum,
+    dxDate,
     TreeSelector
   },
   computed: {
@@ -29,18 +66,74 @@ export default {
     },
     type: {
       get () {
-        return this.$store.state.type
+        return this.$store.state.params.type
       },
       set (value) {
-        this.$store.dispatch('search', {type: value}).then(function () {
-          console.log('completed')
-        })
-        console.log(this.$store.state.params)
+        this.param_type = value
+        this.search()
+      }
+    },
+    count: {
+      get () {
+        return this.$store.state.params.count
+      },
+      set (value) {
+        this.param_count = value
+        this.search()
+      }
+    },
+    date_from: {
+      get () {
+        return this.$store.state.params.date_from
+      },
+      set (value) {
+        this.param_date_from = value
+        this.search()
+      }
+    },
+    date_till: {
+      get () {
+        return this.$store.state.params.date_till
+      },
+      set (value) {
+        this.param_date_till = value
+        this.search()
       }
     }
   },
   methods: {
-    updateType () {
+    search () {
+      this.$store.dispatch('search', {
+        count: this.param_count,
+        type: this.param_type,
+        date_from: this.param_date_from,
+        date_till: this.param_date_till,
+        location: this.param_location,
+        location__city: this.param_location__city,
+        location__city__region: this.param_location__city__region
+      }).catch(function () {
+
+      })
+    },
+    updateLocations (data) {
+      this.param_location = []
+      this.param_location__city = []
+      this.param_location__city__region = []
+      let app = this
+      data.forEach(function (elem) {
+        switch (elem.type) {
+          case 'location':
+            app.param_location.push(elem.id)
+            break
+          case 'location__city':
+            app.param_location__city.push(elem.id)
+            break
+          case 'location__city__region':
+            app.param_location__city__region.push(elem.id)
+            break
+        }
+      })
+      this.search()
     }
   },
   mounted () {
@@ -50,5 +143,12 @@ export default {
 </script>
 
 <style scoped>
-
+  .search_box__inner{
+    background-color: lightgray;
+    padding: 15px;
+  }
+  label{
+    margin-bottom: 0;
+    margin-top: .5rem;
+  }
 </style>

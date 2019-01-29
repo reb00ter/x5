@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper">
-    Главная страница
     <search-box/>
-    <results :results="results"/>
+    <results :results="results" :error="error" :error_text="error_text"/>
   </div>
 </template>
 
@@ -24,6 +23,12 @@ export default {
   computed: {
     results () {
       return this.$store.state.results
+    },
+    error () {
+      return this.$store.state.search_error
+    },
+    error_text () {
+      return this.$store.state.search_error_text
     }
   }
 }

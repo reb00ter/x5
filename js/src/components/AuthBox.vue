@@ -21,11 +21,9 @@ export default {
 
   },
   created: function () {
-    let promise = container.getCurrentUser()
-    let vue = this
-    promise.then(function (data) {
-      console.log(data)
-      vue.user = data
+    let app = this
+    container.getCurrentUser().then(function (data) {
+      app.user = data
     })
   },
   components: {

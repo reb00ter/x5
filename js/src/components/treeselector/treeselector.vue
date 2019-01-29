@@ -121,9 +121,13 @@ export default {
 </script>
 
 <style scoped>
+  input{
+    outline: none;
+  }
   .tree-selector{
     position: relative;
     text-align: left;
+    font-size: 12px;
   }
   .suggestions{
     display: none;
@@ -140,7 +144,8 @@ export default {
     display: block;
   }
   .tree-selector {
-    outline: 1px solid;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     background: #fefefe;
   }
   .tree-selector input{
@@ -149,7 +154,7 @@ export default {
     border: none;
     border-radius: 0;
     margin: 0;
-    padding: 0;
+    padding: 4px 5px;
   }
   ul{
     padding-left: 20px
@@ -157,6 +162,10 @@ export default {
   li{
     list-style-type: none;
     margin-left: 5px;
+  }
+  ul.selection{
+    margin-bottom: 0;
+    padding-left: 0;
   }
   ul.selection li{
     margin-left: 5px;

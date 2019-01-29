@@ -1,6 +1,29 @@
 const axios = require('axios')
+
+function formatDate (date) {
+  return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+}
+
+// функция формирования параметров для GET запроса из переданного словаря
+const transformRequestOptions = params => {
+  let options = ''
+  for (const key in params) {
+    if (typeof params[key] !== 'object' && params[key]) {
+      options += `${key}=${params[key]}&`
+    } else if (typeof params[key] === 'object' && params[key] && params[key].length) {
+      params[key].forEach(el => {
+        options += `${key}=${el}&`
+      })
+    } else if (typeof params[key] === 'object' && key.includes('date') && params[key]) {
+      options += `${key}=${formatDate(params[key])}&`
+    }
+  }
+  return options ? options.slice(0, -1) : options
+}
+
 const axiosConfig = {
-  baseURL: '/api'
+  baseURL: '/api',
+  paramsSerializer: params => transformRequestOptions(params)
 }
 
 const HTTP = axios.create(axiosConfig)

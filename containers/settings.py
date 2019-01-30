@@ -142,6 +142,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # Заменяем модель пользователя
 AUTH_USER_MODEL = 'core.User'
 
+# csrf
+CSRF_COOKIE_NAME = "SecretCSRFCo0kie"
+CSRF_HEADER_NAME = "SecretCSRFHeader"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

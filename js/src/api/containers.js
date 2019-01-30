@@ -1,5 +1,21 @@
 const axios = require('axios')
 
+// // using jQuery
+// function getCookie (name) {
+//   let cookieValue = null
+//   if (document.cookie && document.cookie !== '') {
+//     let cookies = document.cookie.split(';')
+//     cookies.forEach(function (value) {
+//       let cookie = value.trim()
+//       if (cookie.substring(0, name.length + 1) === (name + '=')) {
+//         cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+//       }
+//     })
+//   }
+//   return cookieValue;
+// }
+// const csrftoken = getCookie('csrftoken')
+
 function formatDate (date) {
   return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
 }
@@ -23,8 +39,14 @@ const transformRequestOptions = params => {
 
 const axiosConfig = {
   baseURL: '/api',
-  paramsSerializer: params => transformRequestOptions(params)
+  paramsSerializer: params => transformRequestOptions(params),
+  // `xsrfCookieName` is the name of the cookie to use as a value for xsrf token
+  xsrfCookieName: 'SecretCSRFCo0kie', // default
+  // `xsrfHeaderName` is the name of the http header that carries the xsrf token value
+  xsrfHeaderName: 'SecretCSRFHeader' // default
 }
+axios.defaults.xsrfCookieName = 'SecretCSRFCo0kie'
+axios.defaults.xsrfHeaderName = 'X-SecretCSRFHeader'
 
 const HTTP = axios.create(axiosConfig)
 
@@ -56,6 +78,14 @@ export default {
   async getFreeContainers (params) {
     try {
       let resp = await HTTP.get('containers/free/', {params: params})
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async storeFreeSearchParams (params) {
+    try {
+      let resp = await HTTP.post('search/free/', {params: params})
       return await resp.data
     } catch (e) {
       return {}

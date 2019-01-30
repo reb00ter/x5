@@ -13,7 +13,7 @@ from .serializers import FreeContainerRequestSerializer, FreeContainerResultsSer
 # Create your views here.
 class FreeContainersRequestsViewSet(viewsets.ModelViewSet):
     detail_serializer_class = FreeContainerResultsSerializer
-    serializer_class = FreeContainerResultsSerializer
+    serializer_class = FreeContainerRequestSerializer
 
     def get_queryset(self):
         """

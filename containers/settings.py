@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'geo.apps.GeoConfig',
     'boxes.apps.BoxesConfig',
+    'searches.apps.SearchesConfig'
 ]
 
 MIDDLEWARE = [

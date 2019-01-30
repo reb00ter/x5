@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, reverse_lazy
 from django.views.generic import TemplateView, RedirectView
-from boxes import views as boxes
 from core import views as core
 from geo import views as geo
+from boxes import views as boxes
+from searches import views as search
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -27,6 +28,8 @@ router.register(r'locations', geo.RegionsViewSet)
 router.register(r'containers/types', boxes.ContainerTypeViewSet)
 router.register(r'containers/free', boxes.FreeContainerViewSet)
 router.register(r'containers/needed', boxes.NeededContainerViewSet)
+router.register(r'search/free', search.FreeContainersRequestsViewSet, basename='search_free')
+# router.register(r'search/needed', search.NeededContainerViewSet)
 
 
 urlpatterns = [

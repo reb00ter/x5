@@ -35,3 +35,9 @@ class FreeContainersRequestsViewSet(viewsets.ModelViewSet):
             raise Http404
         objs = obj.containers().qs
         return Response([FreeContainerSerializer(container).data for container in objs])
+
+    def perform_create(self, serializer):
+        """
+        Автоматически сохраняем пользователя
+        """
+        serializer.save(user=self.request.user)

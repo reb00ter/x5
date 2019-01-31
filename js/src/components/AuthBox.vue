@@ -1,5 +1,7 @@
 <template>
     <div class="user" v-if="user.email">
+      <router-link :to="{ name: 'index' }">Главная</router-link>
+      <router-link :to="{ name: 'StoredFilters' }">Сохранённые фильтры</router-link>
       {{ user.email }}
       <a href="/admin/logout/">Выйти</a>
     </div>

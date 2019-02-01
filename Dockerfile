@@ -3,7 +3,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /code
 WORKDIR /code
 COPY . /code
-COPY ./containers/local_settings.py.tpl /code/containers/local_settings.py
+COPY ./containers/local_settings.py.docker /code/containers/local_settings.py
 # Install our requirements.
 RUN pipenv install --system --deploy --ignore-pipfile
 WORKDIR /code/js

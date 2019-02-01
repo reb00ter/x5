@@ -8,7 +8,7 @@ from boxes.filters import FreeContainerFilter
 
 
 class BaseContainerRequest(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="пользователь")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="пользователь", blank=True)
     date_from = models.DateField(verbose_name="с", null=True, blank=True)
     date_till = models.DateField(verbose_name="по", null=True, blank=True)
     type = models.ForeignKey(ContainerType, on_delete=models.CASCADE, verbose_name="тип контейнера")

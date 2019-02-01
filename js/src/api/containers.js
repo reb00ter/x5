@@ -85,7 +85,23 @@ export default {
   },
   async storeFreeSearchParams (params) {
     try {
-      let resp = await HTTP.post('search/free/', {params: params})
+      let resp = await HTTP.post('search/free/', params)
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async getMyFreeSearchParams () {
+    try {
+      let resp = await HTTP.get('search/free/')
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async getFreeSearchParams (id) {
+    try {
+      let resp = await HTTP.get('search/free/' + id + '/')
       return await resp.data
     } catch (e) {
       return {}

@@ -34,6 +34,8 @@ router.register(r'search/free', search.FreeContainersRequestsViewSet, basename='
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    # path('auth/', include('social_django.urls', namespace="social")),
     path('auth/', include('rest_framework_social_oauth2.urls')),
     path('api/', include(router.urls)),
     path('accounts/profile/', RedirectView.as_view(url=reverse_lazy('index')), name='profile'),

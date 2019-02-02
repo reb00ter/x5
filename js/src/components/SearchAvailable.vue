@@ -2,7 +2,7 @@
   <div class="search_box">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-3 search_box__inner">
+        <div class="col-sm-12 col-md-6 col-lg-4 search_box__inner">
           <div class="row">
             <div class="search_box__item col-12">
               <label>Расположение</label>
@@ -168,5 +168,14 @@ export default {
   label{
     margin-bottom: 0;
     margin-top: .5rem;
+  }
+</style>
+<style>
+  .dx-datebox.dx-auto-width.dx-dropdowneditor-button-visible
+  .dx-texteditor-input,
+  .dx-datebox:not(.dx-texteditor-empty)
+  .dx-auto-width.dx-dropdowneditor-button-visible
+  .dx-texteditor-input {
+    padding-right: 22px;
   }
 </style>

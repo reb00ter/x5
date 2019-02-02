@@ -1,21 +1,5 @@
 const axios = require('axios')
 
-// // using jQuery
-// function getCookie (name) {
-//   let cookieValue = null
-//   if (document.cookie && document.cookie !== '') {
-//     let cookies = document.cookie.split(';')
-//     cookies.forEach(function (value) {
-//       let cookie = value.trim()
-//       if (cookie.substring(0, name.length + 1) === (name + '=')) {
-//         cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
-//       }
-//     })
-//   }
-//   return cookieValue;
-// }
-// const csrftoken = getCookie('csrftoken')
-
 function formatDate (date) {
   return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
 }

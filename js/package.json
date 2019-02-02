@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
     "devextreme": "^18.2.4",
-    "devextreme-vue": "^18.2.4",
+    "devextreme-vue": "^18.2.5",
     "qs": "^6.6.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",

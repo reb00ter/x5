@@ -11,5 +11,5 @@ RUN npm install
 RUN npm run build
 WORKDIR /code
 RUN python manage.py migrate
-EXPOSE 6999
+EXPOSE 6999:6999
 CMD ["/code/start.sh"]:

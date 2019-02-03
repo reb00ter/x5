@@ -3,8 +3,8 @@ version: '3'
 services:
   web:
     build: .
-    command: sh start.sh
+    command: /code/start.sh
     volumes:
-      - .:/code
+      - /opt/youtrack/data/containers:/code/data
     ports:
       - "7111:8000"

@@ -1,6 +1,6 @@
 <template>
-    <div class="user" v-if="user.email">
-      {{ user.email }}
+    <div class="user" v-if="user.id">
+      {{ user.username }}
       <a href="/accounts/logout/">Выйти</a>
     </div>
     <div class="user" v-else>

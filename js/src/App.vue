@@ -5,7 +5,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="title col-sm-2">Контейнеры</div>
-            <div class="menu col-sm-8"><main-menu :auth_done="user.email !== ''"/></div>
+            <div class="menu col-sm-8"><main-menu :auth_done="user.id !== null"/></div>
             <div class="auth col-sm-2"><auth-box :user="user"/></div>
           </div>
         </div>

@@ -14,49 +14,6 @@
 import TreeItem from './tree_item.vue'
 import Vue from 'vue'
 
-function addIfChecked (list, option) {
-  if (option.checked) {
-    list.push(option)
-  } else {
-    if (option.children) {
-      option.children.forEach(function (elem) {
-        addIfChecked(list, elem)
-      })
-    }
-  }
-}
-
-function showAllChildren (root) {
-  if (root.children == null) {
-    return
-  }
-  root.children.forEach(function (item) {
-    Vue.set(item, 'visible', true)
-    if (item.children == null) {
-      return
-    }
-    showAllChildren(item)
-  })
-}
-
-function filterTree (root, expression) {
-  if (root.title.match(new RegExp(expression, 'i'))) {
-    Vue.set(root, 'visible', true)
-    Vue.set(root, 'opened', false)
-    showAllChildren(root)
-    return true
-  }
-  let gotVisible = false
-  if (root.children) {
-    root.children.forEach(function (item) {
-      gotVisible = filterTree(item, expression) || gotVisible
-    })
-    Vue.set(root, 'opened', gotVisible)
-  }
-  Vue.set(root, 'visible', gotVisible)
-  return gotVisible
-}
-
 export default {
   name: '',
   data: function () {
@@ -79,8 +36,9 @@ export default {
         let queryParts = this.query.split(/ |,|\./g)
         let expression = queryParts.join('.*')
         let result = []
+        let vue = this
         this.options.forEach(function (item) {
-          if (filterTree(item, expression)) {
+          if (vue.filterTree(item, expression)) {
             result.push(item)
           }
         })
@@ -96,8 +54,9 @@ export default {
     'update_selected': function () {
       let result = []
       if (this.options) {
+        let vue = this
         this.options.forEach(function addSelected (option) {
-          addIfChecked(result, option)
+          vue.addIfChecked(result, option)
         })
       }
       this.selected = result
@@ -112,6 +71,50 @@ export default {
     },
     'set_focus': function () {
       this.$el.querySelector('input[type=text]').focus()
+    },
+    'addIfChecked': function (list, option) {
+      if (option.checked) {
+        list.push(option)
+      } else {
+        if (option.children) {
+          let vue = this
+          option.children.forEach(function (elem) {
+            vue.addIfChecked(list, elem)
+          })
+        }
+      }
+    },
+    'showAllChildren': function (root) {
+      if (root.children == null) {
+        return
+      }
+      let vue = this
+      root.children.forEach(function (item) {
+        vue.$store.commit('showLeaf', item)
+        if (item.children == null) {
+          return
+        }
+        vue.showAllChildren(item)
+      })
+    },
+    'filterTree': function (root, expression) {
+      if (root.title.match(new RegExp(expression, 'i'))) {
+        this.$store.commit('showLeaf', root)
+        this.$store.commit('closeLeaf', root)
+        console.log(root.title + 'closed by filterTree')
+        this.showAllChildren(root)
+        return true
+      }
+      let gotVisible = false
+      if (root.children) {
+        let vue = this
+        root.children.forEach(function (item) {
+          gotVisible = vue.filterTree(item, expression) || gotVisible
+        })
+        gotVisible ? this.$store.commit('openLeaf', root) : this.$store.commit('closeLeaf', root)
+      }
+      gotVisible ? this.$store.commit('showLeaf', root) : this.$store.commit('hideLeaf', root)
+      return gotVisible
     }
   },
   components: {
@@ -157,7 +160,7 @@ export default {
     padding: 4px 5px;
   }
   ul{
-    padding-left: 20px
+    padding-left: 0px
   }
   li{
     list-style-type: none;

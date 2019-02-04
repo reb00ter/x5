@@ -55,6 +55,27 @@ export default new Vuex.Store({
     resetSearchError (state, e) {
       state.search_error = false
       state.search_error_text = e
+    },
+    showLeaf (state, leaf) {
+      Vue.set(leaf, 'visible', true)
+    },
+    hideLeaf (state, leaf) {
+      Vue.set(leaf, 'visible', false)
+    },
+    openLeaf (state, leaf) {
+      Vue.set(leaf, 'opened', true)
+    },
+    closeLeaf (state, leaf) {
+      Vue.set(leaf, 'opened', false)
+    },
+    switchLeaf (state, leaf) {
+      Vue.set(leaf, 'opened', !leaf.opened)
+    },
+    checkLeaf (state, leaf) {
+      Vue.set(leaf, 'checked', true)
+    },
+    uncheckLeaf (state, leaf) {
+      Vue.set(leaf, 'checked', false)
     }
   }
 })

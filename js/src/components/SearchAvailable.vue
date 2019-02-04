@@ -12,17 +12,17 @@
               <label>Тип</label>
               <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type"/>
             </div>
-            <div class="search_box__item col-4">
-              <label>Количество</label>
-              <dx-num v-model="count" min="1"/>
-            </div>
-            <div class="search_box__item col-4">
+            <div class="search_box__item col-6">
               <label>С</label>
               <dx-date v-model="date_from"/>
             </div>
-            <div class="search_box__item col-4">
+            <div class="search_box__item col-6">
               <label>По</label>
               <dx-date v-model="date_till" :min="param_date_from"/>
+            </div>
+            <div class="search_box__item col-12">
+              <label>Количество</label>
+              <dx-num v-model="count" :min="1"/>
             </div>
           </div>
           <div class="row">

@@ -13,6 +13,7 @@
 export default {
   name: 'AuthBox',
   data: function () {
+    return {}
   },
   props: [
     'user'

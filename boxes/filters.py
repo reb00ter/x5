@@ -39,8 +39,8 @@ class FreeContainerFilter(BaseContainerFilter):
             value = self.form.data[name]
             if "location" in name and value is not None:
                 # собираем всё про location по ИЛИ
-                value = self.form.cleaned_data.get(name)
-                if value.count() > 0:
+                value = list(self.form.cleaned_data.get(name))
+                if len(value) > 0:
                     lookup = '%s__%s' % (name, "in")
                     location_q = location_q | Q(**{lookup: value})
             elif name == "count":

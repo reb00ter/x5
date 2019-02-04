@@ -41,6 +41,7 @@ class BaseContainer(models.Model):
 
 class FreeContainer(BaseContainer):
     parts = models.BooleanField(verbose_name="можно частями", default=True)
+    price = models.DecimalField(max_digits=8, decimal_places=0, verbose_name="цена", default=0)
 
     class Meta:
         verbose_name = "свободный контейнер"

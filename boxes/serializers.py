@@ -18,7 +18,7 @@ class FreeContainerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FreeContainer
-        fields = ('id', 'type', 'location', 'address', 'count', 'parts', 'date_from', 'date_till', 'contact')
+        fields = ('id', 'type', 'location', 'address', 'count', 'parts', 'date_from', 'date_till', 'price', 'contact')
 
 
 class NeededContainerSerializer(serializers.ModelSerializer):

@@ -36,7 +36,7 @@ export default {
         background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNCcgaGVpZ2h0PScxNCc+PGcgY2xhc3M9J2N1cnJlbnRMYXllcicgc3R5bGU9Jyc+PHBhdGggZmlsbD0nI2ZmODAwMCcgc3Ryb2tlPScjMDAwMDAwJyBzdHJva2Utd2lkdGg9JzAuNCcgc3Ryb2tlLWxpbmVqb2luPSdyb3VuZCcgZD0nTTAsNCBMMTQsNCBMNywxNCBMMCw0IHonIGZpbGwtb3BhY2l0eT0nMScvPjwvZz48L3N2Zz4=");
     }
     ul{
-        padding-left: 20px
+        padding-left: 0px
     }
     li{
         list-style-type: none;

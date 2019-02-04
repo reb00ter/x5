@@ -83,9 +83,9 @@ export default {
       return {}
     }
   },
-  async getFreeSearchParams (id) {
+  async getStoredFreeSearchParamsResults (id) {
     try {
-      let resp = await HTTP.get('search/free/' + id + '/')
+      let resp = await HTTP.get('search/free/' + id + '/results/')
       return await resp.data
     } catch (e) {
       return {}

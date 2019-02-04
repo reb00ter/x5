@@ -46,7 +46,7 @@ class FreeContainerFilter(BaseContainerFilter):
             elif name == "count":
                 # для количества обрщаем внимание на то, что могут быть партии, которые можно взять не полностью
                 count_q = (Q(count=value) & Q(parts=False)) | (Q(count__gte=value) & Q(parts=True))
-            elif name == "date_from":
+            elif name == "date_from" and value is not None:
                 # дата начала, конечно, должна быть больше либо равно чем у предложения,
                 # но и меньше даты окончания предложения (если такая есть)
                 date_from_q = (Q(date_from__lte=value) & Q(date_till__isnull=True)) | \

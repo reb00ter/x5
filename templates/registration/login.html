@@ -1,16 +1,9 @@
-{% extends "base.html" %}
-{% block content %}
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6">
-            <h2>Авторизация</h2>
-            <form method="post">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit">Войти</button>
-            </form>
-            <div class="social">
-                <a href="/auth/login/vk-oauth2">VK</a>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Войти</button>
+</form>
+<div class="social">
+    <p>Войти с помощью соц сетей</p>
+    <a href="/auth/login/vk-oauth2">VK</a>
+</div>

@@ -8,6 +8,10 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
+    user: {
+      id: null,
+      email: ''
+    },
     mode: 'avail',
     params: {},
     results: [],
@@ -76,6 +80,12 @@ export default new Vuex.Store({
     },
     uncheckLeaf (state, leaf) {
       Vue.set(leaf, 'checked', false)
+    },
+    setUser (state, user) {
+      state.user = user
+    },
+    setMode (state, mode) {
+      state.mode = mode
     }
   }
 })

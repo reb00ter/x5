@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <search-box/>
+    <search-box :auth_done="user.id !== null"/>
     <results :results="results" :error="error" :error_text="error_text"/>
   </div>
 </template>
@@ -16,11 +16,11 @@ export default {
     Results
   },
   methods: {
-    auth: function () {
-      this.$router.push('auth')
-    }
   },
   computed: {
+    user () {
+      return this.$store.state.user
+    },
     results () {
       return this.$store.state.results
     },

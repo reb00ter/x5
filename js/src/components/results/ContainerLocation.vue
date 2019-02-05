@@ -12,5 +12,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .location{
+    overflow-x: hidden;
+    white-space: nowrap;
+  }
 </style>

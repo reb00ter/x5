@@ -4,28 +4,37 @@
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 search_box__inner">
           <div class="row">
+            <div class="title-search">
+              <p>Поиск контейнеров</p>
+            </div>
+            <div class="search_box__item col-12">
+              <input type="radio" name="mode" value="avail" id="avail" v-model="mode">
+              <label for="avail">Я ищу</label>
+              <input type="radio" name="mode" value="need" id="need" v-model="mode">
+              <label for="need">У меня есть</label>
+            </div>
+            <div class="search_box__item col-md-4 col-xs-6">
+              <label>Количество</label>
+              <dx-num v-model="count" :min="1"/>
+            </div>
+            <div class="search_box__item col-md-8 col-xs-6">
+              <label>Тип</label>
+              <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type"/>
+            </div>
+            <div class="search_box__item col-md-6 col-xs-12">
+              <label>С</label>
+              <dx-date v-model="date_from" style="width: 100%"/>
+            </div>
+            <div class="search_box__item col-md-6 col-xs-12">
+              <label>По</label>
+              <dx-date v-model="date_till" :min="param_date_from" style="width: 100%"/>
+            </div>
             <div class="search_box__item col-12">
               <label>Расположение</label>
               <tree-selector :options="locations" @change="updateLocations"/>
             </div>
-            <div class="search_box__item col-12">
-              <label>Тип</label>
-              <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type"/>
-            </div>
-            <div class="search_box__item col-6">
-              <label>С</label>
-              <dx-date v-model="date_from"/>
-            </div>
-            <div class="search_box__item col-6">
-              <label>По</label>
-              <dx-date v-model="date_till" :min="param_date_from"/>
-            </div>
-            <div class="search_box__item col-12">
-              <label>Количество</label>
-              <dx-num v-model="count" :min="1"/>
-            </div>
           </div>
-          <div class="row">
+          <div class="row" v-if="auth_done">
             <div class="store_button_container col-12">
               <dx-button text="Сохранить поиск" @click="store"/>
             </div>
@@ -64,6 +73,7 @@ export default {
     dxDate,
     TreeSelector
   },
+  props: ['auth_done'],
   computed: {
     types () {
       return this.$store.state.types
@@ -105,6 +115,14 @@ export default {
       set (value) {
         this.param_date_till = value
         this.search()
+      }
+    },
+    mode: {
+      get () {
+        return this.$store.state.mode
+      },
+      set (value) {
+        this.$store.commit('setMode', value)
       }
     }
   },
@@ -161,9 +179,31 @@ export default {
 </script>
 
 <style scoped>
+  .search_box{
+    background-image: url("../assets/containers.jpg");
+    background-size: cover;
+  }
   .search_box__inner{
-    background-color: lightgray;
     padding: 15px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #e3e3e3;
+    -moz-box-shadow: 0 13px 16px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 13px 16px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 13px 16px rgba(0, 0, 0, 0.5);
+  }
+  .title-search {
+    text-align: center;
+    margin-top: 2px;
+    height: 45px;
+    width: 100%;
+  }
+  .title-search p {
+    color: #f88e1d;
+    font-size: 14px;
+    padding-top: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
   label{
     margin-bottom: 0;

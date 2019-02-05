@@ -35,6 +35,14 @@ axios.defaults.xsrfHeaderName = 'X-SecretCSRFHeader'
 const HTTP = axios.create(axiosConfig)
 
 export default {
+  async getAuthDlg () {
+    try {
+      let resp = await HTTP.get('/accounts/login', {baseURL: '/'})
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
   async getCurrentUser () {
     try {
       let resp = await HTTP.get('users/current/')

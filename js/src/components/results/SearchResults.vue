@@ -1,8 +1,12 @@
 <template>
   <div class="search_results">
-    <free-container v-for="container in results" :container="container" :key="container.id"/>
-    <div v-if="results.length === 0">Таких контейнеров нет</div>
-    <div v-if="error" class="dx-error-message">Во время поиска произошла ошибка {{ error_text }}</div>
+    <div class="container">
+      <div class="row">
+        <free-container v-for="container in results" :container="container" :key="container.id"/>
+        <div v-if="results.length === 0">Таких контейнеров нет</div>
+        <div v-if="error" class="dx-error-message">Во время поиска произошла ошибка {{ error_text }}</div>
+      </div>
+    </div>
   </div>
 </template>
 

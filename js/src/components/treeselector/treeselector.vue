@@ -12,7 +12,6 @@
 
 <script>
 import TreeItem from './tree_item.vue'
-import Vue from 'vue'
 
 export default {
   name: '',
@@ -101,7 +100,6 @@ export default {
       if (root.title.match(new RegExp(expression, 'i'))) {
         this.$store.commit('showLeaf', root)
         this.$store.commit('closeLeaf', root)
-        console.log(root.title + 'closed by filterTree')
         this.showAllChildren(root)
         return true
       }
@@ -130,7 +128,7 @@ export default {
   .tree-selector{
     position: relative;
     text-align: left;
-    font-size: 12px;
+    font-size: 14px;
   }
   .suggestions{
     display: none;
@@ -158,6 +156,7 @@ export default {
     border-radius: 0;
     margin: 0;
     padding: 4px 5px;
+    width: 125px;
   }
   ul{
     padding-left: 0px

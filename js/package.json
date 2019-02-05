@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "bootstrap": "^4.2.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "devextreme": "^18.2.4",
     "devextreme-vue": "^18.2.5",
     "qs": "^6.6.0",
@@ -43,6 +43,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.28.0",
+    "devextreme-intl": "^18.2.5",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",

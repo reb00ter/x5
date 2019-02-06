@@ -42,3 +42,8 @@ class BaseContainerRequest(models.Model):
 class FreeContainerRequest(BaseContainerRequest):
     def containers(self):
         return FreeContainerFilter(self.filter_dict(), queryset=FreeContainer.objects.all())
+
+
+class NeedContainerRequest(BaseContainerRequest):
+    def containers(self):
+        return FreeContainerFilter(self.filter_dict(), queryset=NeededContainer.objects.all())

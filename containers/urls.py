@@ -25,17 +25,17 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'users', core.UserViewSet)
 router.register(r'locations', geo.RegionsViewSet)
+router.register(r'stations', geo.StationsViewSet)
 router.register(r'containers/types', boxes.ContainerTypeViewSet)
 router.register(r'containers/free', boxes.FreeContainerViewSet)
-router.register(r'containers/needed', boxes.NeededContainerViewSet)
+router.register(r'containers/need', boxes.NeededContainerViewSet)
 router.register(r'search/free', search.FreeContainersRequestsViewSet, basename='search_free')
-# router.register(r'search/needed', search.NeededContainerViewSet)
+router.register(r'search/need', search.NeedContainersRequestsViewSet, basename='search_need')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    # path('auth/', include('social_django.urls', namespace="social")),
     path('auth/', include('rest_framework_social_oauth2.urls')),
     path('api/', include(router.urls)),
     path('accounts/profile/', RedirectView.as_view(url=reverse_lazy('index')), name='profile'),

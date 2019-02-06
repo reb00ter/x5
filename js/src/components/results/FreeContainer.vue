@@ -1,9 +1,10 @@
 <template>
   <div class="col-12 col-md-6 col-lg-3">
     <div class="box">
-      <div class="count">{{ container.type }} {{ container.count }} шт<span v-if="container.parts"> (можно частями)</span></div>
-      <container-location :location="container.location"/>
-      <div class="address">{{ container.address }}</div>
+      <div class="count">{{ container.type_title }} {{ container.count }} шт<span v-if="container.parts"> (можно частями)</span></div>
+      <container-location :location="container.location_data"/>
+      <div class="address" v-if="container.address">{{ container.address }}</div>
+      <div class="address inactive" v-else>Адрес не указан</div>
       <div class="dates">
         <span>с {{ formatDate(container.date_from) }}</span>
         <span v-if="container.date_till">по {{ formatDate(container.date_till) }}</span>
@@ -44,5 +45,8 @@ export default {
   .count, .dates{
     overflow-x: hidden;
     white-space: nowrap;
+  }
+  .inactive {
+    color: #989898;
   }
 </style>

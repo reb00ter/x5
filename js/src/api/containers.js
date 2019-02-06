@@ -75,6 +75,42 @@ export default {
       return {}
     }
   },
+  async storeFreeContainers (containersData) {
+    try {
+      if (containersData.date_from) {
+        containersData.date_from = formatDate(containersData.date_from)
+      }
+      if (containersData.date_till) {
+        containersData.date_till = formatDate(containersData.date_till)
+      }
+      let resp = await HTTP.post('containers/free/', containersData)
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async getNeedContainers (params) {
+    try {
+      let resp = await HTTP.get('containers/need/', {params: params})
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async storeNeedContainers (containersData) {
+    try {
+      if (containersData.date_from) {
+        containersData.date_from = formatDate(containersData.date_from)
+      }
+      if (containersData.date_till) {
+        containersData.date_till = formatDate(containersData.date_till)
+      }
+      let resp = await HTTP.post('containers/need/', containersData)
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
   async storeFreeSearchParams (params) {
     try {
       let resp = await HTTP.post('search/free/', params)
@@ -83,9 +119,9 @@ export default {
       return {}
     }
   },
-  async getMyFreeSearchParams () {
+  async storeNeedSearchParams (params) {
     try {
-      let resp = await HTTP.get('search/free/')
+      let resp = await HTTP.post('search/need/', params)
       return await resp.data
     } catch (e) {
       return {}
@@ -94,6 +130,14 @@ export default {
   async getStoredFreeSearchParamsResults (id) {
     try {
       let resp = await HTTP.get('search/free/' + id + '/results/')
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async getMyFreeSearchParams () {
+    try {
+      let resp = await HTTP.get('search/free/')
       return await resp.data
     } catch (e) {
       return {}

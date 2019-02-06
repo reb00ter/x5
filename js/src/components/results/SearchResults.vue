@@ -2,7 +2,7 @@
   <div class="search_results">
     <div class="container">
       <div class="row">
-        <free-container v-for="container in results" :container="container" :key="container.id"/>
+        <free-container v-for="container in results" :container="container" :key="container.id" @click.native="$emit('select', container)"/>
         <div v-if="results.length === 0">Таких контейнеров нет</div>
         <div v-if="error" class="dx-error-message">Во время поиска произошла ошибка {{ error_text }}</div>
       </div>
@@ -18,6 +18,8 @@ export default {
   props: ['results', 'error', 'error_text'],
   components: {
     FreeContainer
+  },
+  methods: {
   }
 }
 </script>

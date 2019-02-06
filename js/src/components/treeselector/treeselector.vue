@@ -5,7 +5,7 @@
             <li class="input"><input type="text" v-model="query" title="фильтр"></li>
         </ul>
         <ul class="suggestions" :style="suggestion_size">
-            <tree-item v-for="elem in filtered_options" :key="elem.type+elem.id" v-bind:leaf="elem" @change="update_selected" v-if="elem.visible"/>
+            <tree-item v-for="elem in filtered_options" :key="elem.type+elem.id" :leaf="elem" @change="update_selected" v-if="elem.visible"/>
         </ul>
     </div>
 </template>
@@ -136,7 +136,7 @@ export default {
     background-color: white;
     outline: 1px solid black;
     z-index: 100;
-    height: 300px;
+    height: 200px;
     margin-left: 0;
     overflow: auto;
   }

@@ -19,7 +19,9 @@ export default new Vuex.Store({
     locations: [],
     count: 1,
     search_error: false,
-    search_error_text: ''
+    search_error_text: '',
+    showAddFree: false,
+    showAddNeed: false
   },
   strict: debug,
   actions: {
@@ -28,14 +30,20 @@ export default new Vuex.Store({
       api.getLocations().then(result => context.commit('setLocations', result))
     },
     search (context, params) {
+      console.log(`searching ${context.state.mode}`)
       context.commit('resetSearchError')
       context.commit('setSearchParams', params)
       if (context.state.mode === 'avail') {
         api.getFreeContainers(params).then(
           result => context.commit('setSearchResults', result),
-          error => {
-            context.commit('setSearchError', error)
-          })
+          error => context.commit('setSearchError', error)
+        )
+      }
+      if (context.state.mode === 'need') {
+        api.getNeedContainers(params).then(
+          result => context.commit('setSearchResults', result),
+          error => context.commit('setSearchError', error)
+        )
       }
     }
   },
@@ -86,6 +94,12 @@ export default new Vuex.Store({
     },
     setMode (state, mode) {
       state.mode = mode
+    },
+    showAddFree (state, value) {
+      state.showAddFree = value
+    },
+    showAddNeed (state, value) {
+      state.showAddNeed = value
     }
   }
 })

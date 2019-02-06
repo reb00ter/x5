@@ -123,6 +123,7 @@ export default {
       },
       set (value) {
         this.$store.commit('setMode', value)
+        this.search()
       }
     }
   },
@@ -141,15 +142,30 @@ export default {
       })
     },
     store () {
-      api.storeFreeSearchParams({
-        count: this.param_count,
-        type: this.param_type,
-        date_from: this.param_date_from,
-        date_till: this.param_date_till,
-        location: this.param_location,
-        location_city: this.param_location__city,
-        location_city_region: this.param_location__city__region
-      })
+      switch (this.$store.state.mode) {
+        case 'avail':
+          api.storeFreeSearchParams({
+            count: this.param_count,
+            type: this.param_type,
+            date_from: this.param_date_from,
+            date_till: this.param_date_till,
+            location: this.param_location,
+            location_city: this.param_location__city,
+            location_city_region: this.param_location__city__region
+          })
+          break
+        case 'need':
+          api.storeNeedSearchParams({
+            count: this.param_count,
+            type: this.param_type,
+            date_from: this.param_date_from,
+            date_till: this.param_date_till,
+            location: this.param_location,
+            location_city: this.param_location__city,
+            location_city_region: this.param_location__city__region
+          })
+          break
+      }
     },
     updateLocations (data) {
       this.param_location = []

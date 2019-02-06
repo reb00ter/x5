@@ -3,8 +3,8 @@
     <b-nav-item><router-link :to="{ name: 'index' }">Главная</router-link></b-nav-item>
     <b-nav-item v-if="auth_done"><router-link :to="{ name: 'StoredFilters' }">Сохранённые фильтры</router-link></b-nav-item>
     <b-nav-item-dropdown  v-if="auth_done" id="nav7_ddown" text="Добавить контейнер" extra-toggle-classes="nav-link-custom" right>
-      <b-dropdown-item>Свободный</b-dropdown-item>
-      <b-dropdown-item>Искомый</b-dropdown-item>
+      <b-dropdown-item @click="showAddFree">Свободный</b-dropdown-item>
+      <b-dropdown-item @click="showAddNeed">Искомый</b-dropdown-item>
     </b-nav-item-dropdown>
   </b-navbar-nav>
 </template>
@@ -23,6 +23,14 @@ export default {
     bNavItem,
     bNavItemDropDown,
     bDropdownItem
+  },
+  methods: {
+    showAddFree () {
+      this.$store.commit('showAddFree', true)
+    },
+    showAddNeed () {
+      this.$store.commit('showAddNeed', true)
+    }
   }
 }
 </script>

@@ -19,7 +19,7 @@
             </div>
             <div class="search_box__item col-md-8 col-xs-6">
               <label>Тип</label>
-              <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type"/>
+              <dx-select :data-source="types" valueExpr="id" displayExpr="title" v-model="type" :searchEnabled="true"/>
             </div>
             <div class="search_box__item col-md-6 col-xs-12">
               <label>С</label>

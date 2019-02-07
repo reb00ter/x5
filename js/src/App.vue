@@ -92,7 +92,8 @@ export default {
           editorOptions: {
             dataSource: '/api/containers/types/',
             valueExpr: 'id',
-            displayExpr: 'title'
+            displayExpr: 'title',
+            searchEnabled: true
           }
         },
         {
@@ -122,7 +123,8 @@ export default {
           editorOptions: {
             dataSource: '/api/stations/',
             valueExpr: 'id',
-            displayExpr: 'title'
+            displayExpr: 'title',
+            searchEnabled: true
           }
         },
         {
@@ -167,7 +169,8 @@ export default {
           editorOptions: {
             dataSource: '/api/containers/types/',
             valueExpr: 'id',
-            displayExpr: 'title'
+            displayExpr: 'title',
+            searchEnabled: true
           }
         },
         {
@@ -190,7 +193,8 @@ export default {
           editorOptions: {
             dataSource: '/api/stations/',
             valueExpr: 'id',
-            displayExpr: 'title'
+            displayExpr: 'title',
+            searchEnabled: true
           }
         },
         {

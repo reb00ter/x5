@@ -4,6 +4,7 @@ from rest_framework.relations import StringRelatedField
 
 from boxes.models import FreeContainer, NeededContainer, ContainerType
 from geo.serializers import StationStringSerializer
+from core.serializers import UserSerializer
 
 
 class ContainerTypeStringSerializer(serializers.ModelSerializer):
@@ -13,6 +14,7 @@ class ContainerTypeStringSerializer(serializers.ModelSerializer):
 
 
 class FreeContainerSerializer(serializers.ModelSerializer):
+    contact = UserSerializer()
     type_title = serializers.SerializerMethodField()
 
     def get_type_title(self, obj):
@@ -30,6 +32,7 @@ class FreeContainerSerializer(serializers.ModelSerializer):
 
 
 class NeededContainerSerializer(serializers.ModelSerializer):
+    contact = UserSerializer()
     type_title = serializers.SerializerMethodField()
 
     def get_type_title(self, obj):

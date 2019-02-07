@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-4">
-        <stored-filter v-for="filter in free_items" :filter_params="filter" :key="filter.id" @click.native="setActive(filter)"
+        <stored-filter v-for="filter in free_items" :filter_params="filter" :key="filter.id" @click.native="setActiveFree(filter)"
                        :class="{selected: filter.id===active}"/>
         <div v-if="free_items.length === 0">
           Сохранённые наборы фильтров не найдены
@@ -32,6 +32,7 @@ export default {
   data () {
     return {
       free_items: [],
+      need_items: [],
       active: null,
       active_data: null
     }
@@ -41,12 +42,14 @@ export default {
     api.getMyFreeSearchParams().then(function (data) {
       app.free_items = data
     })
+    api.getMyNeedSearchParams().then(function (data) {
+      app.need_items = data
+    })
   },
   methods: {
-    setActive (item) {
+    setActiveFree (item) {
       this.active = item.id
       let vue = this
-      console.log('active changed')
       api.getStoredFreeSearchParamsResults(item.id).then(function (data) {
         vue.active_data = data
       })

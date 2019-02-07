@@ -62,7 +62,7 @@ class NeedContainersRequestsViewSet(viewsets.ModelViewSet):
     @action(detail=True)
     def results(self, request, pk=None):
         """
-        Возвращает результаты поиска по этому фильтру на странице /api/search/free/<pk>/results
+        Возвращает результаты поиска по этому фильтру на странице /api/search/need/<pk>/results
         """
         if pk is None:
             return Response([])

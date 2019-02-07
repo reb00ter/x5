@@ -142,5 +142,21 @@ export default {
     } catch (e) {
       return {}
     }
+  },
+  async getStoredNeedSearchParamsResults (id) {
+    try {
+      let resp = await HTTP.get('search/need/' + id + '/results/')
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
+  },
+  async getMyNeedSearchParams () {
+    try {
+      let resp = await HTTP.get('search/need/')
+      return await resp.data
+    } catch (e) {
+      return {}
+    }
   }
 }

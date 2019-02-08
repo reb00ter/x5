@@ -14,7 +14,7 @@ class ContainerTypeStringSerializer(serializers.ModelSerializer):
 
 
 class FreeContainerSerializer(serializers.ModelSerializer):
-    contact = UserSerializer()
+    contact = UserSerializer(required=False)
     type_title = serializers.SerializerMethodField()
 
     def get_type_title(self, obj):
@@ -32,7 +32,7 @@ class FreeContainerSerializer(serializers.ModelSerializer):
 
 
 class NeededContainerSerializer(serializers.ModelSerializer):
-    contact = UserSerializer()
+    contact = UserSerializer(required=False)
     type_title = serializers.SerializerMethodField()
 
     def get_type_title(self, obj):

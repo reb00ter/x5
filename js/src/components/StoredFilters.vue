@@ -2,9 +2,13 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-4">
-        <stored-filter v-for="filter in free_items" :filter_params="filter" :key="filter.id" @click.native="setActiveFree(filter)"
-                       :class="{selected: filter.id===active}"/>
-        <div v-if="free_items.length === 0">
+        <h2 v-if="free_items.length > 0">Свободные контейнеры</h2>
+        <stored-filter v-for="filter in free_items" :filter_params="filter" :key="'free' + filter.id" @click.native="setActiveFree(filter)"
+                       :class="{selected: (filter.id===active)&&(active_type==='free')}"/>
+        <h2 v-if="need_items.length > 0">Искомые контейнеры</h2>
+        <stored-filter v-for="filter in need_items" :filter_params="filter" :key="'need' + filter.id" @click.native="setActiveNeed(filter)"
+                       :class="{selected: (filter.id===active)&&(active_type==='need')}"/>
+        <div v-if="(free_items.length+need_items.length) === 0">
           Сохранённые наборы фильтров не найдены
         </div>
       </div>
@@ -34,6 +38,7 @@ export default {
       free_items: [],
       need_items: [],
       active: null,
+      active_type: '',
       active_data: null
     }
   },
@@ -49,6 +54,15 @@ export default {
   methods: {
     setActiveFree (item) {
       this.active = item.id
+      this.active_type = 'free'
+      let vue = this
+      api.getStoredFreeSearchParamsResults(item.id).then(function (data) {
+        vue.active_data = data
+      })
+    },
+    setActiveNeed (item) {
+      this.active = item.id
+      this.active_type = 'need'
       let vue = this
       api.getStoredFreeSearchParamsResults(item.id).then(function (data) {
         vue.active_data = data

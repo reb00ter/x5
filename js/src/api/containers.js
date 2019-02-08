@@ -113,6 +113,12 @@ export default {
   },
   async storeFreeSearchParams (params) {
     try {
+      if (params.date_from) {
+        params.date_from = formatDate(params.date_from)
+      }
+      if (params.date_till) {
+        params.date_till = formatDate(params.date_till)
+      }
       let resp = await HTTP.post('search/free/', params)
       return await resp.data
     } catch (e) {
@@ -121,6 +127,13 @@ export default {
   },
   async storeNeedSearchParams (params) {
     try {
+      console.log(params)
+      if (params.date_from) {
+        params.date_from = formatDate(params.date_from)
+      }
+      if (params.date_till) {
+        params.date_till = formatDate(params.date_till)
+      }
       let resp = await HTTP.post('search/need/', params)
       return await resp.data
     } catch (e) {

@@ -3,7 +3,7 @@ from .models import Region, Station
 from .serializers import RegionSerializer, StationSerializer
 
 
-class RegionsViewSet(viewsets.ModelViewSet):
+class RegionsViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
@@ -11,7 +11,7 @@ class RegionsViewSet(viewsets.ModelViewSet):
     serializer_class = RegionSerializer
 
 
-class StationsViewSet(viewsets.ModelViewSet):
+class StationsViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """

@@ -1,0 +1,6 @@
+FROM python:3.6-slim
+ENV PYTHONUNBUFFERED 1
+RUN mkdir -p /opt/project
+WORKDIR /opt/project
+COPY Pipfile* /opt/project/
+RUN pip install pipenv && pipenv install --system

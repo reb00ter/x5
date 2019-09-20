@@ -22,7 +22,7 @@ const transformRequestOptions = params => {
 }
 
 const axiosConfig = {
-  baseURL: '/api',
+  baseURL: 'http://127.0.0.1:8000/api',
   paramsSerializer: params => transformRequestOptions(params),
   // `xsrfCookieName` is the name of the cookie to use as a value for xsrf token
   xsrfCookieName: 'SecretCSRFCo0kie', // default

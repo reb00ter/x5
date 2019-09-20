@@ -9,4 +9,3 @@ WORKDIR /code/js
 RUN npm install
 RUN npm run build
 WORKDIR /code
-CMD ["/code/start.sh"]:

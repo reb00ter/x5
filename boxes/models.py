@@ -26,7 +26,7 @@ class BaseContainer(models.Model):
     count = models.PositiveIntegerField(verbose_name="количество")
     date_from = models.DateField(verbose_name="свободны с")
     date_till = models.DateField(verbose_name="свободны до", null=True, blank=True)
-    contact = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE, blank=True)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE, blank=True)
 
     def __str__(self):
         location = "{} {} {}".format(self.location.title, self.location.city.title, self.location.city.region.title)

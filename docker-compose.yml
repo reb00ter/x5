@@ -1,10 +1,27 @@
 version: '3'
 
 services:
-  web:
-    build: .
-    command: /code/start.sh
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     volumes:
-      - /opt/youtrack/data/containers:/code/data
+      - .:/opt/project
+      - ./containers/local_settings.py.docker:/opt/project/containers/local_settings.py
+    command: sh /opt/project/start.sh
     ports:
-      - "7111:8000"
+      - "8000:8000"
+
+  web:
+    image: node:10-slim
+    volumes:
+      - ./js:/opt/project
+      - ./start_web.sh:/opt/project/start_web.sh
+    working_dir: /opt/project
+    environment:
+      - HOST=0.0.0.0
+    command: sh /opt/project/start_web.sh
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app
